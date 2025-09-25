@@ -62,16 +62,54 @@
     perspective: 1200px;
 }
 
-
-.galleryItem {
+/* CARROSSEL: O item agora é o wrapper para a imagem e o texto */
+.galleryItemWrapper {
     position: absolute;
     transition: all 0.4s ease-in-out;
-    border-radius: 15px;
-    background-size: cover;
-    width: 220px;
-    height: 280px;
+    width: 200px;
+    /* Largura reduzida para ser mais compacto */
+    height: 250px;
+    /* Altura ajustada */
     opacity: 0.8;
+}
+
+/* Estilo da Imagem dentro do Carrossel */
+.galleryImage {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     box-shadow: 10px 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* NOVO: Estilos da informação abaixo da imagem no Carrossel (apenas para o item ativo) */
+.carouselInfo {
+    position: absolute;
+    bottom: -60px;
+    /* Posição abaixo do documento (ajustado para mais espaço) */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    /* Largura para o texto */
+    text-align: center;
+    pointer-events: none;
+}
+
+.carouselName {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #401201;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carouselDate {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    color: #5A3A2E;
 }
 
 
@@ -142,36 +180,7 @@
     right: -40px;
 }
 
-.galleryNav {
-    bottom: -15px;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-}
-
-/* Acho que esse aqui não vai funcionar testar depois */
-.galleryNav li {
-    background: #ccc;
-    border-radius: 50%;
-    height: 10px;
-    margin: 0 16px;
-    width: 10px;
-}
-
-.galleryNav li.galleryNavItemSelected {
-    background: #555;
-}
-
 /* Button select */
-/* .buttonSelect {
-    background-color: #401201 !important;
-    color: #ccc;
-    border-radius: 30px;
-} */
-
 .buttonSelect {
     position: relative;
     display: inline-block;
@@ -225,4 +234,80 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+/* ========================================================================= */
+/* NOVO CSS PARA O MODO GRADE (ContainerGrid) - Mais compacto e com info */
+/* ========================================================================= */
+
+.ContainerGrid {
+    padding-top: 30px;
+}
+
+/* Estilo geral do cartão na grade (mais compacto) */
+.CardGridItem {
+    background-color: #fff;
+    border: 1px solid #e0c8b3;
+    border-radius: 12px;
+    padding: 10px;
+    /* Reduzido para compactar */
+    box-shadow: 0 4px 8px rgba(64, 18, 1, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+    /* Largura máxima reduzida */
+    cursor: pointer;
+    text-align: center;
+    height: auto;
+    /* Altura ajustada automaticamente */
+}
+
+/* Efeito de hover para interação */
+.CardGridItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(64, 18, 1, 0.25);
+}
+
+/* Estilo da imagem dentro do cartão */
+.CardGridItem img {
+    border-radius: 6px;
+    object-fit: cover;
+    height: 150px;
+    /* Altura da imagem reduzida para compactar */
+    width: 100%;
+    margin-bottom: 8px;
+    border: 1px solid #f0d5be;
+}
+
+/* NOVO: Estilo do Nome do Arquivo na Grade */
+.gridName {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    /* Fonte menor */
+    color: #401201;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+
+/* NOVO: Estilo da Data na Grade */
+.gridDate {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    /* Fonte bem menor para ser secundária */
+    color: #5A3A2E;
+    margin: 5px 0 0 0;
+    /* Espaçamento menor */
+}
+
+/* Responsividade adicional para garantir bom espaçamento em telas muito pequenas */
+@media (max-width: 576px) {
+    .CardGridItem {
+        max-width: 90%;
+        margin: 0 auto;
+    }
 }
