@@ -1,3 +1,5 @@
+/* CÓDIGO FINAL COMPLETO */
+
 "use client";
 
 import React, { useRef, useState } from "react";
@@ -28,6 +30,17 @@ export default function Dashboard() {
         );
     };
 
+    // NOVO: Função para selecionar um item específico (usada na grade e no carrossel)
+    const handleSelect = (index) => {
+        // Se já estiver no carrossel, apenas atualiza o índice
+        setActiveIndex(index);
+
+        // OPCIONAL: Se estiver na grade e o usuário clicar, você pode voltar para o carrossel
+        // if (viewMode === "grid") {
+        //     setViewMode("carousel");
+        // }
+    };
+
     const handleDragStart = (e) => {
         startXRef.current =
             e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
@@ -50,6 +63,7 @@ export default function Dashboard() {
         const offset = (index - activeIndex + galleryItems.length) % galleryItems.length;
         let position = offset - Math.floor(galleryItems.length / 2);
 
+        // Ajustei o scale aqui para voltar ao padrão do seu carrossel anterior, já que a classe 'activeItem' será aplicada a todos
         const scale = 1 + Math.abs(position) * 0.2;
         const left = 50 + position * 25;
         const zIndex = 10 - Math.abs(position);
@@ -68,9 +82,31 @@ export default function Dashboard() {
 
     return (
         <section className={`${styles.dashboard} pt-5`}>
+            <Container className="contentInicial">
+                <Row className="text-center">
+                    <Col md="8" className="mx-auto">
+                        <Col md="10" className="mx-auto">
+                            <h1 className={styles.textPrincipal}>
+                                Escolha qual documento você deseja analisar os resultados
+                            </h1>
+                            <h4 className={styles.textSecundario}>
+                                Transforme documentos físicos em informações digitais de forma rápida,
+                                segura e inteligente. Nosso sistema organiza, interpreta e entrega os
+                                dados prontos para uso, reduzindo erros manuais e acelerando decisões.
+                            </h4>
+                        </Col>
+                        <img
+                            src="/ChooseFile.png"
+                            alt="Choose your file"
+                            className={`${styles.arrowChoose} d-none d-md-block`}
+                        />
+                    </Col>
+                </Row>
+            </Container>
             <Container fluid className="text-center">
                 <Button
                     color="primary"
+                    className={`mt-3 mb-3 ${styles.btnCustomChangeView}`}
                     onClick={() =>
                         setViewMode(viewMode === "carousel" ? "grid" : "carousel")
                     }
@@ -81,25 +117,7 @@ export default function Dashboard() {
 
             {viewMode === "carousel" && (
                 <Container fluid className="ContainerCaroussel mt-3">
-                    <Row className="text-center">
-                        <Col md="8" className="mx-auto">
-                            <Col md="10" className="mx-auto">
-                                <h1 className={styles.textPrincipal}>
-                                    Escolha qual documento você deseja analisar os resultados
-                                </h1>
-                                <h4 className={styles.textSecundario}>
-                                    Transforme documentos físicos em informações digitais de forma rápida,
-                                    segura e inteligente. Nosso sistema organiza, interpreta e entrega os
-                                    dados prontos para uso, reduzindo erros manuais e acelerando decisões.
-                                </h4>
-                            </Col>
-                            <img
-                                src="/ChooseFile.png"
-                                alt="Choose your file"
-                                className={styles.arrowChoose}
-                            />
-                        </Col>
-                    </Row>
+
                     <Row className="mt-5">
                         <Col className={styles.cardSlider}>
                             <Row>
@@ -116,21 +134,21 @@ export default function Dashboard() {
                                         {galleryItems.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className={styles.galleryItemWrapper} // Adicionei um wrapper para o conteúdo
+                                                // ÚNICA ALTERAÇÃO SOLICITADA: Aplicar styles.activeItem a TODOS
+                                                className={`${styles.galleryItemWrapper} ${styles.activeItem}`}
                                                 style={getItemStyle(index)}
+                                                onClick={() => handleSelect(index)}
                                             >
                                                 <img
                                                     className={styles.galleryImage}
                                                     src={item.src}
                                                     alt={item.alt}
                                                 />
-                                                {/* Exibe as informações APENAS para o item ativo */}
-                                                {index === activeIndex && (
-                                                    <div className={styles.carouselInfo}>
-                                                        <h6 className={styles.carouselName}>{item.name}</h6>
-                                                        <p className={styles.carouselDate}>Data: {item.date}</p>
-                                                    </div>
-                                                )}
+                                                {/* INFORMAÇÕES AGORA VISÍVEIS ABAIXO DE TODOS */}
+                                                <div className={styles.carouselInfo}>
+                                                    <h6 className={styles.carouselName}>{item.name}</h6>
+                                                    <p className={styles.carouselDate}>Data: {item.date}</p>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -157,7 +175,7 @@ export default function Dashboard() {
             )}
 
             {viewMode === "grid" && (
-                <Container fluid className="ContainerGrid mt-3">
+                <Container className="ContainerGrid mt-3">
                     <Row className="justify-content-center">
                         {galleryItems.map((item, index) => (
                             <Col
@@ -167,7 +185,10 @@ export default function Dashboard() {
                                 md="3"
                                 className="mb-4 d-flex flex-column align-items-center"
                             >
-                                <div className={styles.CardGridItem}>
+                                <div
+                                    className={styles.CardGridItem}
+                                    onClick={() => handleSelect(index)} // Torna o item clicável
+                                >
                                     <img
                                         src={item.src}
                                         alt={item.alt}

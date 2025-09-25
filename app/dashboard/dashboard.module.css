@@ -311,3 +311,41 @@
         margin: 0 auto;
     }
 }
+
+.btnCustomChangeView {
+    /* Base */
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    /* Cantos arredondados modernos */
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* Cores da sua paleta */
+    background-color: #401201 !important;
+    /* Cor escura (principal) */
+    color: #fff !important;
+    /* Texto branco */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para profundidade */
+}
+
+.btnCustomChangeView:hover {
+    background-color: #5A3A2E !important;
+    /* Um tom um pouco mais claro no hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra mais evidente */
+    transform: translateY(-2px);
+    /* Efeito de elevação */
+}
+
+.btnCustomChangeView:active {
+    background-color: #2B1800 !important;
+    /* Cor mais escura ao clicar */
+    transform: translateY(0);
+    /* Retorna ao nível normal para o feedback de clique */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
