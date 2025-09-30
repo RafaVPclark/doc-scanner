@@ -47,6 +47,25 @@
     margin: 0 auto;
 }
 
+.backButton {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: white !important;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backButton:hover {
+    background-color: #5a6268 !important;
+    border-color: #545b62 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
 
 .gallery {
     width: 100%;
@@ -348,4 +367,160 @@
     transform: translateY(0);
     /* Retorna ao nível normal para o feedback de clique */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================================================= */
+/* ESTILOS DO MODAL (POP-UP DE DETALHES) */
+/* ========================================================================= */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(64, 18, 1, 0.7);
+    /* Fundo semi-transparente escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* Garante que fique acima de tudo */
+    backdrop-filter: blur(5px);
+    /* Efeito de desfoque sutil */
+}
+
+.modalContent {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    width: 90%;
+    /* Largura em telas menores */
+    max-width: 1000px;
+    /* Largura máxima (80% da tela) */
+    max-height: 80vh;
+    /* Altura máxima de 80% da viewport */
+    overflow-y: auto;
+    /* Permite scroll no conteúdo */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    animation: scaleIn 0.3s forwards;
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+.modalCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #401201;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+    color: #f78900;
+}
+
+.modalTitle {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #401201;
+    margin-bottom: 5px;
+}
+
+.modalSubtitle {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #5A3A2E;
+    border-bottom: 2px solid #f0d5be;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+/* Detalhes de Campo/Valor */
+.detailItem {
+    margin-bottom: 15px;
+}
+
+.detailLabel {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #5A3A2E;
+    margin: 0;
+    line-height: 1;
+}
+
+.detailValue {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #401201;
+    margin: 0;
+}
+
+/* Tabela de Dados Estruturados */
+.tableContainer {
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #e0c8b3;
+    border-radius: 8px;
+}
+
+.dataTablet {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataTablet th,
+.dataTablet td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-family: "PT Sans", sans-serif;
+    font-size: 14px;
+}
+
+.dataTablet th {
+    background-color: #f0d5be;
+    color: #401201;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.dataTablet tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Conteúdo Bruto */
+.rawContent {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 13px;
+    color: #333;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.btnCustomSelectFile {
+    color: #fff;
+    font-weight: bolder;
+    margin-top: 8px;
 }

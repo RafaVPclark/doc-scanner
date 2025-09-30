@@ -1,0 +1,452 @@
+/* CONTAINER GERAL */
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0d5be;
+    /* Cor de fundo clara do seu tema */
+    padding: 20px;
+    position: relative;
+    /* Base para o posicionamento do botão flutuante */
+}
+
+.main {
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px;
+    background: #fff;
+    /* Fundo branco para o card principal */
+    box-shadow: 0 10px 30px rgba(64, 18, 1, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* NOVO E MELHORADO: Estilo do Link/Botão do Dashboard (Flutuante e Visível) */
+.dashboardLink {
+    /* Posicionamento fixo/flutuante */
+    position: absolute;
+    top: 30px;
+    /* Distância do topo */
+    right: 30px;
+    /* Distância da direita */
+
+    /* Estilo do botão */
+    display: flex;
+    /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 8px;
+    /* Espaço entre ícone e texto */
+
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    /* Texto branco para alto contraste */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #f78900;
+    /* Cor de destaque (laranja) para visibilidade */
+    box-shadow: 0 5px 15px rgba(247, 137, 0, 0.4);
+    /* Sombra mais vibrante */
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+    /* Garante que fique acima de outros elementos */
+    letter-spacing: 0.5px;
+    /* Leve espaçamento para melhor leitura */
+}
+
+.dashboardLink:hover {
+    background-color: #e67d00;
+    /* Tom mais escuro de laranja no hover */
+    box-shadow: 0 8px 20px rgba(247, 137, 0, 0.6);
+    /* Sombra ainda mais forte */
+    transform: translateY(-2px);
+    /* Efeito de elevação mais perceptível */
+}
+
+/* Estilo do Ícone dentro do botão */
+.dashboardIcon {
+    /* Pode ser substituído por um SVG ou imagem */
+    display: inline-block;
+    width: 18px;
+    /* Tamanho do ícone */
+    height: 18px;
+    /* Tamanho do ícone */
+    background-color: currentColor;
+    /* Usa a cor do texto do botão */
+    mask: url('/icons/folder.svg') no-repeat center / contain;
+    /* Exemplo com SVG mask */
+    /* Se não tiver um SVG, pode usar um pseudo-elemento com unicode */
+    /*
+    &::before {
+        content: '\1F4C1'; // Ícone de pasta unicode
+        font-size: 18px;
+        line-height: 1;
+    }
+    */
+}
+
+
+/* TÍTULOS */
+.title {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #401201;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
+    color: #5A3A2E;
+    margin-bottom: 30px;
+}
+
+/* FORMULÁRIO E BOTÕES (UPLOAD) */
+.uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.selectButton,
+.submitButton {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    text-transform: uppercase;
+}
+
+.selectButton {
+    background-color: #401201;
+    color: #fff;
+}
+
+.selectButton:hover {
+    background-color: #5A3A2E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton {
+    background-color: #f78900;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #e67d00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.statusText {
+    font-family: "PT Sans", sans-serif;
+    font-size: 14px;
+    color: #401201;
+    min-height: 20px;
+    margin: 10px 0;
+}
+
+.filePreview {
+    margin-top: 20px;
+}
+
+.previewImage {
+    border-radius: 10px;
+    object-fit: contain;
+    border: 2px solid #e0c8b3;
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES */
+@media (max-width: 600px) {
+    .dashboardLink {
+        top: 15px;
+        right: 15px;
+        font-size: 14px;
+        padding: 8px 15px;
+        gap: 5px;
+    }
+
+    .dashboardIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .main {
+        padding: 30px 20px;
+        margin-top: 60px;
+        /* Para não ficar atrás do botão */
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+}
+
+/* Botão novo (abrir modal) */
+.openModalButton {
+    background-color: #401201;
+    color: #fff;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.openModalButton:hover {
+    background-color: #5A3A2E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay e conteúdo do modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(64, 18, 1, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modalContent {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    animation: scaleIn 0.3s forwards;
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+.modalCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #401201;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+    color: #f78900;
+}
+
+.modalTitle {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #401201;
+    margin-bottom: 10px;
+}
+
+.modalSubtitle {
+    font-family: "PT Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #5A3A2E;
+    border-bottom: 2px solid #f0d5be;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.detailItem {
+    margin-bottom: 15px;
+}
+
+.detailLabel {
+    font-size: 14px;
+    font-family: "PT Sans", sans-serif;
+    color: #5A3A2E;
+}
+
+.detailValue {
+    font-size: 16px;
+    font-weight: 700;
+    color: #401201;
+}
+
+.rawContent {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 13px;
+    color: #333;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modalContent {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modalCloseButton {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.modalTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #401201;
+}
+
+.modalSubtitle {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #5A3A2E;
+}
+
+.detailGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.detailItem {
+    flex: 1 1 45%;
+}
+
+.detailLabel {
+    font-size: 14px;
+    color: #5A3A2E;
+}
+
+.detailValue {
+    font-size: 16px;
+    font-weight: bold;
+    color: #401201;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.dataTable th,
+.dataTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.rawContent {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    font-size: 13px;
+}
+
+/* Resumo abaixo do botão */
+.resultContainer {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.detailsButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f78900;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background 0.3s;
+}
+
+.detailsButton:hover {
+    background-color: #e67d00;
+}
+
+.resultPreview {
+    background: #fff5eb;
+    border: 1px solid #f2c185;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
